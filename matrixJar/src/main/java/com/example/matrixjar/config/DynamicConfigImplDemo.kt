@@ -1,8 +1,12 @@
-package com.example.study_app_launch_time.config
+package com.example.matrixjar.config
 
+import android.content.Context
 import android.util.Log
+import com.tencent.matrix.trace.TracePlugin
+import com.tencent.matrix.trace.config.TraceConfig
 import com.tencent.matrix.util.MatrixLog
 import com.tencent.mrs.plugin.IDynamicConfig
+import java.io.File
 import java.util.concurrent.TimeUnit
 
 /**
@@ -93,5 +97,46 @@ class DynamicConfigImplDemo : IDynamicConfig {
         // TODO here return default value which is inside sdk, you can change it as you wish. matrix-sdk-key in class MatrixEnum.
 
         return defFloat
+    }
+
+    fun configureTracePlugin(dynamicConfig: DynamicConfigImplDemo, applicationContext: Context): TracePlugin {
+        val fpsEnable: Boolean = dynamicConfig.isFPSEnable()
+        val traceEnable: Boolean = dynamicConfig.isTraceEnable()
+        val signalAnrTraceEnable: Boolean = dynamicConfig.isSignalAnrTraceEnable()
+
+        val traceFileDir = File(applicationContext.filesDir, "matrix_trace")
+        if (!traceFileDir.exists()) {
+            if (traceFileDir.mkdirs()) {
+                MatrixLog.e(TAG, "failed to create traceFileDir")
+            }
+        }
+
+        val anrTraceFile = File(
+            traceFileDir,
+            "anr_trace"
+        ) // path : /data/user/0/sample.tencent.matrix/files/matrix_trace/anr_trace
+        val printTraceFile = File(
+            traceFileDir,
+            "print_trace"
+        ) // path : /data/user/0/sample.tencent.matrix/files/matrix_trace/print_trace
+
+        val traceConfig: TraceConfig = TraceConfig.Builder()
+            .dynamicConfig(dynamicConfig)
+            .enableFPS(fpsEnable)
+            .enableEvilMethodTrace(traceEnable)
+            .enableAnrTrace(traceEnable)
+            .enableStartup(traceEnable)
+            .enableIdleHandlerTrace(traceEnable) // Introduced in Matrix 2.0
+            .enableSignalAnrTrace(signalAnrTraceEnable) // Introduced in Matrix 2.0
+            .anrTracePath(anrTraceFile.absolutePath)
+            .printTracePath(printTraceFile.absolutePath)
+            .splashActivities("sample.tencent.matrix.SplashActivity;")
+            .isDebug(true)
+            .isDevEnv(false)
+            .build()
+
+        //Another way to use SignalAnrTracer separately
+        //useSignalAnrTraceAlone(anrTraceFile.getAbsolutePath(), printTraceFile.getAbsolutePath());
+        return TracePlugin(traceConfig)
     }
 }

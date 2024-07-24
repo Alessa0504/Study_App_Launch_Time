@@ -8,7 +8,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        A()
+        A()   //模拟app耗时
     }
 
 
@@ -57,6 +57,7 @@ class MainActivity : AppCompatActivity() {
         SystemClock.sleep(10)
     }
     private fun L() {
+        //trace耗时行61
         SystemClock.sleep(10000)
     }
 }

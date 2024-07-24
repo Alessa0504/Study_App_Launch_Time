@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.example.study_app_launch_time.config
+package com.example.matrixjar.config
 
 /**
  * Created by zhoushaotao on 2018/10/9.

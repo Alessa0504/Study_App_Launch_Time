@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.example.study_app_launch_time.issue;
+package com.example.matrixjar.issue;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -33,7 +33,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.study_app_launch_time.R;
+import com.example.matrixjar.R;
 import com.tencent.matrix.report.Issue;
 
 import org.json.JSONException;

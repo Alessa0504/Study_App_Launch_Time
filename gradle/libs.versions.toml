@@ -25,4 +25,5 @@ androidx-constraintlayout = { group = "androidx.constraintlayout", name = "const
 android-application = { id = "com.android.application", version.ref = "agp" }
 jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 matrix = { id = "com.tencent.matrix", version.ref = "matrix" }
+android-library = { id = "com.android.library", version.ref = "agp" }
 

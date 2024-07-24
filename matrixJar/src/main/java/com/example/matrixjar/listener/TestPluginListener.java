@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.example.study_app_launch_time.listener;
+package com.example.matrixjar.listener;
 
 import android.app.Application;
 import android.content.Context;
@@ -23,9 +23,9 @@ import android.os.Handler;
 import android.os.Looper;
 import android.widget.Toast;
 
-import com.example.study_app_launch_time.issue.IssueFilter;
-import com.example.study_app_launch_time.issue.IssuesListActivity;
-import com.example.study_app_launch_time.issue.IssuesMap;
+import com.example.matrixjar.issue.IssueFilter;
+import com.example.matrixjar.issue.IssuesListActivity;
+import com.example.matrixjar.issue.IssuesMap;
 import com.tencent.matrix.plugin.DefaultPluginListener;
 import com.tencent.matrix.report.Issue;
 import com.tencent.matrix.util.MatrixLog;

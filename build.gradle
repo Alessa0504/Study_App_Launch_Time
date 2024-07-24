@@ -6,10 +6,11 @@ buildscript {
         maven { url "https://maven.tencent.com/nexus/repository/maven-public/" }
     }
     dependencies {
-        classpath("com.tencent.matrix:matrix-gradle-plugin:1.0.0") { changing = true }
+        classpath("com.tencent.matrix:matrix-gradle-plugin:${MATRIX_VERSION}") { changing = true }
     }
 }
 plugins {
 alias(libs.plugins.android.application) apply false
     alias(libs.plugins.jetbrains.kotlin.android) apply false
+    alias(libs.plugins.android.library) apply false
 }

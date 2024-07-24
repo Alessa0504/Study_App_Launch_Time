@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.example.study_app_launch_time.issue;
+package com.example.matrixjar.issue;
 
 import com.tencent.matrix.report.Issue;
 
