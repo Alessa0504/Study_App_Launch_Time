@@ -4,10 +4,7 @@ import android.app.Application
 import com.example.matrixjar.config.DynamicConfigImplDemo
 import com.example.matrixjar.listener.TestPluginListener
 import com.tencent.matrix.Matrix
-import com.tencent.matrix.trace.TracePlugin
-import com.tencent.matrix.trace.config.TraceConfig
 import com.tencent.matrix.util.MatrixLog
-import java.io.File
 
 
 /**

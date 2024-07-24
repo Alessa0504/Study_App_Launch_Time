@@ -9,6 +9,9 @@ pluginManagement {
         }
         mavenCentral()
         gradlePluginPortal()
+        flatDir {
+            dirs 'libs'   //flatDir { dirs 'libs' }告诉Gradle在libs目录中查找平板库（包括.aar文件）
+        }
     }
 }
 dependencyResolutionManagement {
@@ -16,6 +19,8 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
+        //打aar，要添加本地仓库
+        mavenLocal()
     }
 }
 

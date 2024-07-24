@@ -1,6 +1,46 @@
 plugins {
     alias(libs.plugins.android.library)   //这里需要改成application才能apply plugin: 'com.tencent.matrix-plugin',但它是个jar包，所以apply plugin写在app module中
     alias(libs.plugins.jetbrains.kotlin.android)
+    // 第一步：引用maven-publish
+    id 'maven-publish'
+}
+
+// 声明aar包的版本号
+def aarVersion = "1.0.0"
+
+// 这个是把源码打入aar包中的任务
+task sourceJar(type: Jar) {
+    archiveClassifier.set('sources')
+    from android.sourceSets.main.java.srcDirs
+}
+afterEvaluate {
+    publishing {
+        publications {
+            // 这里的debug名字是自己起的
+            debug(MavenPublication) {
+                groupId = 'com.example.matrixjar'
+                artifactId = 'matrixjar'
+                version = aarVersion
+                // 这里除了有debug 还有release
+                from components.debug
+                // 运行任务，把源码打进去
+                artifact sourceJar
+            }
+        }
+        // 添加仓库地址
+        repositories {
+            // 本地仓库
+            mavenLocal()
+            // 当上传到远端仓库
+//            maven {
+//                url("")
+//                credentials {
+//                    username = ""
+//                    password = ""
+//                }
+//          }
+        }
+    }
 }
 
 android {
@@ -29,6 +69,8 @@ android {
     }
 }
 
+def MATRIX_VERSION = '2.1.0'
+
 dependencies {
 
     implementation libs.androidx.core.ktx
@@ -38,7 +80,7 @@ dependencies {
     androidTestImplementation libs.androidx.junit
     androidTestImplementation libs.androidx.espresso.core
 
-    //Matrix, api是为了向app module传递依赖
+    //Matrix, api是为了向app module传递依赖, 但仅适用于 implementation project(':matrixJar') 的情况
     api group: "com.tencent.matrix", name: "matrix-android-lib", version: MATRIX_VERSION, changing: true
     api group: "com.tencent.matrix", name: "matrix-android-commons", version: MATRIX_VERSION, changing: true
     api group: "com.tencent.matrix", name: "matrix-trace-canary", version: MATRIX_VERSION, changing: true
