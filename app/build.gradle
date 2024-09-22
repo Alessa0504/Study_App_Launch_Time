@@ -53,15 +53,15 @@ dependencies {
     implementation group: "com.tencent.matrix", name: "matrix-battery-canary", version: MATRIX_VERSION, changing: true
     implementation group: "com.tencent.matrix", name: "matrix-hooks", version: MATRIX_VERSION, changing: true
 
-//    implementation project(':matrixJar')   //依赖本地lib库
+    implementation project(':matrixJar')   //依赖本地lib库
     implementation fileTree(dir: "libs", include: ["*.jar", "*.aar"])   //依赖打好的存于app/libs目录下的AAR文件，如matrixJar-debug.aar
 }
 
-apply plugin: 'com.tencent.matrix-plugin'
-matrix {
-    trace {
-        enable = true //if you don't want to use trace canary, set false
-        baseMethodMapFile = "${project.buildDir}/matrix_output/Debug.methodmap"
-        blackListFile = "${project.projectDir}/matrixTrace/blackMethodList.txt"
-    }
-}
+//apply plugin: 'com.tencent.matrix-plugin'
+//matrix {
+//    trace {
+//        enable = true //if you don't want to use trace canary, set false
+//        baseMethodMapFile = "${project.buildDir}/matrix_output/Debug.methodmap"
+//        blackListFile = "${project.projectDir}/matrixTrace/blackMethodList.txt"
+//    }
+//}

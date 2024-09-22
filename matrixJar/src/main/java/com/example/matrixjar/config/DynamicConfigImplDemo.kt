@@ -130,7 +130,7 @@ class DynamicConfigImplDemo : IDynamicConfig {
             .enableSignalAnrTrace(signalAnrTraceEnable) // Introduced in Matrix 2.0
             .anrTracePath(anrTraceFile.absolutePath)
             .printTracePath(printTraceFile.absolutePath)
-            .splashActivities("sample.tencent.matrix.SplashActivity;")
+            .splashActivities("com.example.study_app_launch_time.MainActivity;")
             .isDebug(true)
             .isDevEnv(false)
             .build()

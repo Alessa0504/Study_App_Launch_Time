@@ -26,6 +26,13 @@ class MatrixApplication: Application() {
 
         // Configure trace canary.
         val tracePlugin = dynamicConfig.configureTracePlugin(dynamicConfig, applicationContext)
+
+//        val tracePlugin2 = TracePlugin(TraceConfig.Builder()
+//            .enableEvilMethodTrace(true)
+////            .enableSignalAnrTrace(true)
+////            .enableAnrTrace(true)
+//            .build())
+
         builder.plugin(tracePlugin)
         Matrix.init(builder.build())
         // Trace Plugin need call start() at the beginning.
